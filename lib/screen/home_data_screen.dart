@@ -131,7 +131,7 @@ class _HomeDataScreenState extends State<HomeDataScreen> {
           },
 
         ):GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisExtent: 120),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisExtent: 100),
           itemCount: Global.g1.todoList.length,
           itemBuilder: (context, index) {
             TaskModal taskModal = Global.g1.todoList[index];
@@ -202,7 +202,7 @@ class _HomeDataScreenState extends State<HomeDataScreen> {
                 margin: EdgeInsets.all(5),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height*0.15,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.amber.shade100),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.amber.shade100),
                 child: Padding(
                   padding: const EdgeInsets.all(10),
                   child: Row(
@@ -211,14 +211,14 @@ class _HomeDataScreenState extends State<HomeDataScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Title: ${taskModal.title}",style: TextStyle(fontSize: 20),),
+                          Text("Title: ${taskModal.title}",style: TextStyle(fontSize: 12),),
                           SizedBox(height: 10,),
-                          Text("description: ${taskModal.description}",style: TextStyle(fontSize: 20),),
+                          Text("description: ${taskModal.description}",style: TextStyle(fontSize: 12),),
 
                         ],
                       ),
                       Spacer(),
-                      Text("${taskModal.priority}",style: TextStyle(fontSize: 20),)
+                      Text("${taskModal.priority}",style: TextStyle(fontSize: 12),)
                     ],
                   ),
                 ),
