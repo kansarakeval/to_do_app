@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/model/taskmodal.dart';
+import 'package:to_do_app/util/global.dart';
 
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({super.key});
@@ -9,6 +11,9 @@ class DetailsScreen extends StatefulWidget {
 
 class _DetailsScreenState extends State<DetailsScreen> {
   String dropdownValue = 'Low';
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,6 +25,22 @@ class _DetailsScreenState extends State<DetailsScreen> {
           ),
           centerTitle: true,
           backgroundColor: Colors.amber,
+          actions: [
+            IconButton(onPressed: (){
+              TaskModal taskModal = TaskModal(
+                title: titleController.text,
+                description: descriptionController.text,
+                priority: dropdownValue,
+              );
+              setState(() {
+                taskModal.title=titleController.text;
+                taskModal.description=descriptionController.text;
+                taskModal.priority=dropdownValue;
+              });
+              Global.g1.todoList.add(taskModal);
+              Navigator.pop(context);
+            }, icon: Icon(Icons.save))
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(10),
@@ -45,6 +66,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               ),
               SizedBox(height: 15,),
               TextField(
+                controller: titleController,
                 decoration: InputDecoration(
                   labelText: 'Title',
                   border: OutlineInputBorder(),
@@ -52,6 +74,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               ),
               SizedBox(height: 15,),
               TextField(
+                controller: descriptionController,
                 decoration: InputDecoration(
                   labelText: 'description',
                   border: OutlineInputBorder(),
